@@ -1,0 +1,33 @@
+[app]
+title = Jarvis 420
+package.name = jarvis420
+package.domain = com.rambhuyan
+source.dir = .
+source.include_exts = py,png,jpg,kv,atlas
+version = 0.1
+requirements = python3,kivy==2.3.0,kivymd==1.2.0,google-generativeai,gtts,speechrecognition
+orientation = portrait
+fullscreen = 0
+android.permissions = INTERNET, RECORD_AUDIO, CALL_PHONE
+
+
+name: Build Android APK
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build with Buildozer
+        uses: ArtemSerebrennkov/buildozer-action@v1
+        with:
+          buildozer_version: master
+          python_version: 3.8
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v2
+        with:
+          name: Jarvis-APK
+          path: bin/*.apk
