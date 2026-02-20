@@ -1,55 +1,54 @@
 [app]
-
 # (str) Title of your application
-title = Jarvis AI
+title = Zara AI
 
 # (str) Package name
-package.name = jarvis_ai
+package.name = zaraai
 
 # (str) Package domain (needed for android packaging)
-package.domain = org.rambhuyan
+package.domain = org.ram.zara
 
-# (str) Source code where the main.py live
+# (str) Source code where the main.py is located
 source.dir = .
 
 # (list) Source files to include (let empty to include all the files)
-source.include_exts = py,png,jpg,kv,atlas
+source.include_exts = py,png,jpg,kv,atlas,mp3
 
-# (str) Application versioning (method 1)
+# (str) Application versioning
 version = 0.1
 
 # (list) Application requirements
-# Ismein aapki saari libraries add kar di gayi hain
-requirements = python3, kivy==2.2.1, kivymd==1.1.1, google-generativeai, gTTS, SpeechRecognition, Pillow, requests, charset-normalizer, idna, urllib3, certifi
+requirements = python3, kivy==2.3.0, kivymd, pyjnius, gtts, google-generativeai, speechrecognition, requests, urllib3, certifi, chardet, android
 
-# (str) Custom source folders for requirements
-# (list) Permissions
-# Jarvis ke liye Mic aur Internet zaroori hai
-android.permissions = INTERNET, RECORD_AUDIO, WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE
+# (str) Supported orientation
+orientation = portrait
 
-# (int) Target Android API, should be as high as possible.
-android.api = 31
+# (list) Permissions (Background listening ke liye zaruri permissions)
+android.permissions = INTERNET, RECORD_AUDIO, MODIFY_AUDIO_SETTINGS, QUERY_ALL_PACKAGES, FOREGROUND_SERVICE, WAKE_LOCK
 
-# (int) Minimum API your APK will support.
+# (str) Services (Yahan humne aapka background service file jod diya hai)
+services = ZaraService:service.py
+
+# (int) Android API level
+android.api = 33
 android.minapi = 21
-
-# (str) Android NDK version to use
 android.ndk = 25b
 
-# (bool) Use --private data storage (True) or --dir public storage (False)
+# (bool) Use private storage for the app
 android.private_storage = True
 
-# (list) List of service to declare
-services = 
+# (str) Android entry point
+android.entrypoint = org.kivy.android.PythonActivity
 
-# (str) Path to a custom whitelist file
-# android.whitelist =
+# (list) Android architectures
+android.archs = arm64-v8a, armeabi-v7a
+
+# (bool) Allow backup
+android.allow_backup = True
 
 [buildozer]
-
-# (int) Log level (0 = error only, 1 = info, 2 = debug (with command output))
+# (int) Log level (2 = debug info)
 log_level = 2
 
-# (int) Display warning if buildozer is run as root (0 = off, 1 = on)
+# (int) Display warning if buildozer is run as root
 warn_on_root = 1
-
