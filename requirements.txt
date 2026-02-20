@@ -1,3 +1,0 @@
-# (list) Application requirements
-# comma separated e.g. requirements = sqlite3,kivy
-requirements = python3, kivy==2.2.1, kivymd==1.1.1, google-generativeai, gTTS, SpeechRecognition, Pillow
